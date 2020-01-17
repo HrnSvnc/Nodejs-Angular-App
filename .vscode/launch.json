@@ -7,54 +7,12 @@
         {
             "type": "node",
             "request": "attach",
-            "name": "Attach",
-            "port": 9229,
+            "name": "Attach by Process ID",
+            "processId": "${command:PickProcess}",
             "skipFiles": [
                 "<node_internals>/**"
             ]
-        },
-        {
-            "type": "extensionHost",
-            "request": "launch",
-            "name": "Launch Extension",
-            "runtimeExecutable": "${execPath}",
-            "args": [
-                "--extensionDevelopmentPath=${workspaceFolder}"
-            ],
-            "outFiles": [
-                "${workspaceFolder}/out/**/*.js"
-            ],
-            "preLaunchTask": "npm"
-        },
-        {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch via NPM",
-            "runtimeExecutable": "npm",
-            "runtimeArgs": [
-                "run-script",
-                "debug"
-            ],
-            "port": 9229,
-            "skipFiles": [
-                "<node_internals>/**"
-            ]
-        },
-        {
-            "type": "node",
-            "request": "attach",
-            "name": "Attach",
-            "port": 9229,
-            "skipFiles": [
-                "<node_internals>/**"
-            ]
-        },
-        {
-            "type": "chrome",
-            "request": "launch",
-            "name": "Launch Chrome against localhost",
-            "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}"
         }
-    ]
+
+    ],
 }
