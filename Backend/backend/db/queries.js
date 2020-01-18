@@ -1,11 +1,13 @@
 const Pool = require('pg').Pool
 const crypto = require('crypto')
+var env = process.env.NODE_ENV || 'developement';
+var config = require('../config/config')[env];
 const pool = new Pool({
-  user: 'harunsevinc',
-  host: '127.0.0.1',
-  database: 'harunsevinc',
-  password: '123456',
-  port: 5432,
+  user: config.user,
+  host: config.host,
+  database: config.database,
+  password: config.password,
+  port: config.port
 })
 
 //hashing and generating salt
@@ -33,10 +35,7 @@ const getUsers = (req, res) => {
   }
 
   const checkIfExists =(req,res)=>{
-    var obj_body = req.body;
-    var obj_header = req.xhr;
-    console.log('JSON.stringify(obj_body):' +JSON.stringify(obj_body))
-    console.log('JSON.stringify(obj_header):' +JSON.stringify(obj_header))
+    "user strict"
     console.log(req)
     pool.query('SELECT user_id FROM users WHERE email =$1::character varying(50)',[req.body.email],(err,response)=>{
       if(err){
